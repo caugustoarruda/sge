@@ -1,0 +1,19 @@
+# Node modules
+node_modules/
+
+# Ambientes
+.env
+/env
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# cpython
+*.cpython*
+
+# pycache
+__pycache__
