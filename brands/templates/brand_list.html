@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
     <div class="row mb-3">
-        <div class="col-md6">
+        <div class="col-md-6">
             <form methdo="get" action="{% url 'brand_list' %}">
                 <div class="input-group"> 
                     <input type="text" class="form-control" name="name" placeholder="Nome" value="{{ request.GEt.name }}">
@@ -15,7 +15,13 @@
                 </div>
             </form>
         </div>
+        <div class="col-md-6">
+            <a href="{% url 'brand_create' %}" class="btn btn-success float-end">
+                <i class="bi bi-plus"></i>Nova marca
+            </a>
+        </div>
     </div>
+
     <div class="table-responsive">
         <table class="table table-striped table-bordered">
             <thead class="thead-dark">
