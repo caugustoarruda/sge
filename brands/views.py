@@ -17,7 +17,7 @@ class BrandListView(ListView):
         
         return queryset
     
-    
+
 class BrandCreateView(CreateView):
     model = models.Brand
     template_name = 'brand_create.html'
@@ -28,4 +28,12 @@ class BrandCreateView(CreateView):
 class BrandDetailView(DetailView):
     model = models.Brand
     template_name = 'brand_detail.html'
+
+
+class BrandUpdateView(UpdateView):
+    model = models.Brand
+    template_name = 'brand_update.html'
+    form_class = forms.BrandForm
+    success_url = reverse_lazy('brand_list')
+
 
