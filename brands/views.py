@@ -37,3 +37,8 @@ class BrandUpdateView(UpdateView):
     success_url = reverse_lazy('brand_list')
 
 
+class BrandDeleteView(DeleteView):
+    model = models.Brand
+    template_name = 'brand_delete.html'
+    success_url = reverse_lazy('brand_list')
+
