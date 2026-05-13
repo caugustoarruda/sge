@@ -2,8 +2,8 @@ from django.contrib import admin
 from . import models
 
 
-class CategorieAdmin(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', )
     search_fields = ('name',)
 
-admin.site.register(models.Category, CategorieAdmin)
+admin.site.register(models.Category, CategoryAdmin)

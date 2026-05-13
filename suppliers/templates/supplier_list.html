@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    SGE - Categorias
+    SGE - Fornecedores
 {% endblock %}
 {% block content %}
     <div class="row mb-3">
         <div class="col-md-6">
-            <form methdo="get" action="{% url 'category_list' %}">
+            <form methdo="get" action="{% url 'supplier_list' %}">
                 <div class="input-group"> 
                     <input type="text" class="form-control" name="name" placeholder="Nome" value="{{ request.GEt.name }}">
                     <button type="submit" class="btn btn-primary">
@@ -16,8 +16,8 @@
             </form>
         </div>
         <div class="col-md-6">
-            <a href="{% url 'category_create' %}" class="btn btn-success float-end">
-                <i class="bi bi-plus"></i>Nova categoria
+            <a href="{% url 'supplier_create' %}" class="btn btn-success float-end">
+                <i class="bi bi-plus"></i>Novo fornecedor
             </a>
         </div>
     </div>
@@ -41,20 +41,20 @@
                 </tr>
             </thead>
             <tbody>
-                {% for category in categories %}
+                {% for supplier in suppliers %}
                     <tr>
-                        <td>{{ category.id }}</td>
-                        <td>{{ category.name }}</td>
-                        <td>{{ category.description }}</td>
+                        <td>{{ supplier.id }}</td>
+                        <td>{{ supplier.name }}</td>
+                        <td>{{ supplier.description }}</td>
                         <td>
-                            <a href="{% url 'category_detail' pk=category.id %}" class="btn btn-info btn-sm">
+                            <a href="{% url 'supplier_detail' pk=supplier.id %}" class="btn btn-info btn-sm">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            <a href="{% url 'category_update' pk=category.id %}" class="btn btn-warning btn-sm">
+                            <a href="{% url 'supplier_update' pk=supplier.id %}" class="btn btn-warning btn-sm">
                                 <i class="bi bi-pencil"></i>
                             </a>
 
-                             <a href="{% url 'category_delete' pk=category.id %}" class="btn btn-danger btn-sm">
+                             <a href="{% url 'supplier_delete' pk=supplier.id %}" class="btn btn-danger btn-sm">
                                 <i class="bi bi-trash"></i>
                             </a>
                         </td>
