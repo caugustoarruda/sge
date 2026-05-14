@@ -11,7 +11,7 @@ class InflowListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        product = self.request.GET.get('productname')
+        product = self.request.GET.get('product')
 
         if product:
             queryset = queryset.filter(product__title__icontains=product)
