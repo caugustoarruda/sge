@@ -1,6 +1,8 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from . import models, forms
+from categories.models import Category
+from brands.models import Brand
 
 
 class ProductListView(ListView):
@@ -17,6 +19,12 @@ class ProductListView(ListView):
             queryset = queryset.filter(title__icontains=title)
         
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        context['brands'] = Brand.objects.all()
+        return context
     
 
 class ProductCreateView(CreateView):
