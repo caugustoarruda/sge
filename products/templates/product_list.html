@@ -29,14 +29,14 @@
                     <select class="form-select" name="category">
                         <option value="" {% if not request.GET.category %} selected {% endif %}>Todas as categorias</option>
                         {% for category in categories %}
-                            <option value="{{ category.id }}" {% if request.GET.category == category.id %} selected {% endif %}>{{ category.name }}</option>
+                            <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:"s" %} selected {% endif %}>{{ category.name }}</option>
                         {% endfor %}
                     </select>
 
                     <select class="form-select" name="brand">
                         <option value="" {% if not request.GET.brand %} selected {% endif %}>Todas as marcas</option>
                         {% for brand in brands %}
-                            <option value="{{ brand.id }}" {% if request.GET.brand == brand.id %} selected {% endif %}>{{ brand.name }}</option>
+                            <option value="{{ brand.id }}" {% if request.GET.brand == brand.id|stringformat:"s" %} selected {% endif %}>{{ brand.name }}</option>
                         {% endfor %}
                     </select>
 
