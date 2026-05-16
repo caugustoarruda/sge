@@ -7,7 +7,7 @@
                         <h5 class="card-title">
                             Quantidade de produtos
                         </h5>
-                        <p class="card-text text-white font-weight-bold display-6">1000</p>
+                        <p class="card-text text-white font-weight-bold display-6">{{ product_metrics.total_quantity }}</p>
                     </div>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                         <h5 class="card-title">
                             Custo de estoque
                         </h5>
-                        <p class="card-text text-white font-weight-bold display-6">R$ 1000.00</p>
+                        <p class="card-text text-white font-weight-bold display-6">R$ {{ product_metrics.total_cost_price }}</p>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                         <h5 class="card-title">
                             Valor do estoque
                         </h5>
-                        <p class="card-text text-white font-weight-bold display-6">R$ 1000.00</p>
+                        <p class="card-text text-white font-weight-bold display-6">R$ {{ product_metrics.total_selling_price }}</p>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                         <h5 class="card-title">
                             Lucro de estoque
                         </h5>
-                        <p class="card-text text-white font-weight-bold display-6">R$ 1000.00</p>
+                        <p class="card-text text-white font-weight-bold display-6">R$ {{ product_metrics.total_profit }}</p>
                     </div>
                 </div>
             </div>
