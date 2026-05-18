@@ -4,6 +4,9 @@
     SGE - Produtos
 {% endblock %}
 {% block content %}
+
+    {% include 'components/_product_metrics.html' %}
+    <div class="mb-4"></div>
     <div class="row mb-3">
         <div class="col-md-6">
             <form methdo="get" action="{% url 'product_list' %}">
