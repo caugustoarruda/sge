@@ -5,7 +5,8 @@ from . import metrics
 def home(request):
     
     context = {
-        'product_metrics': metrics.get_product_metrics()
+        'product_metrics': metrics.get_product_metrics(),
+        'sales_metrics': metrics.get_sales_metrics()
     }
 
     return render(
