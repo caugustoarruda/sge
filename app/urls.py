@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('login/', auth.LoginView.as_view(), name='login'),
+    path('logout/', auth.LogoutView.as_view(), name='logout'),
 
     path('', views.home, name='home'),
 
