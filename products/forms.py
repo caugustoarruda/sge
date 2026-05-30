@@ -23,5 +23,5 @@ class ProductForm(forms.ModelForm):
             'description': 'Descrição',
             'serie_number': 'Número de série',
             'cost_price': 'Preço de custo',
-            'selling_cost': 'Preço de venda'
+            'selling_price': 'Preço de venda'
         }
