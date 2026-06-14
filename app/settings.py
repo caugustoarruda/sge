@@ -102,7 +102,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'sge_db',
-        'PORT': '5433'
+        'PORT': '5432'
     },
     'dev': {
         'ENGINE': 'django.db.backends.sqlite3',
