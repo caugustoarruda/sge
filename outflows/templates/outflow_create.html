@@ -1,17 +1,53 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    SGE - Registrar Saída
+{% endblock %}
+
 {% block content %}
-    <div class="container mt-4">
-        <h3 class="display-6">Registrar Saída</h3>
-        <div class="card">
-            <div class="card-body">
-                <form class="form" method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary">Registrar saída</button>
-                </form>
-            </div>
-        </div>
-        <a href="{% url 'outflow_list' %}" class="btn btn-secondary mt-3">Cancelar e voltar</a>
+  <div class="mx-auto max-w-2xl space-y-6">
+    <div>
+      <h1 class="text-xl font-semibold tracking-tight text-white sm:text-2xl">Registrar Saída</h1>
+      <p class="mt-1 text-sm text-slate-400">Registre a saída de um produto do estoque.</p>
     </div>
+
+    <div class="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-black/40 backdrop-blur-xl sm:p-6">
+      {% if form.non_field_errors %}
+        <div role="alert" class="mb-5 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300">
+          {% for error in form.non_field_errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <form method="post" class="space-y-5">
+        {% csrf_token %}
+
+        {% for field in form %}
+          <div>
+            <label for="{{ field.id_for_label }}" class="mb-1.5 block text-sm font-medium text-slate-300">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+              <p class="mt-1 text-xs text-red-400">{{ field.errors|striptags }}</p>
+            {% endif %}
+          </div>
+        {% endfor %}
+
+        <div class="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:justify-end">
+          <a
+            href="{% url 'outflow_list' %}"
+            class="inline-flex items-center justify-center rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-slate-200 transition hover:bg-white/10"
+          >
+            Cancelar e voltar
+          </a>
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center rounded-lg bg-linear-to-r from-indigo-600 to-violet-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-950/50 transition hover:from-indigo-500 hover:to-violet-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 active:scale-[0.99]"
+          >
+            Registrar saída
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock %}

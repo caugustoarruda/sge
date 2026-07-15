@@ -1,49 +1,43 @@
-<div class="card mt-4">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card bg-primary">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            Quantidade de produtos
-                        </h5>
-                        <p class="card-text text-white font-weight-bold display-6">{{ product_metrics.total_quantity }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card bg-danger">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            Custo do estoque
-                        </h5>
-                        <p class="card-text text-white font-weight-bold display-6">R$ {{ product_metrics.total_cost_price }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card bg-success">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            Valor do estoque
-                        </h5>
-                        <p class="card-text text-white font-weight-bold display-6">R$ {{ product_metrics.total_selling_price }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card bg-warning">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            Lucro do estoque
-                        </h5>
-                        <p class="card-text text-white font-weight-bold display-6">R$ {{ product_metrics.total_profit }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="mt-2">
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-black/40 backdrop-blur-xl transition hover:border-indigo-500/30">
+      <div class="flex items-center gap-3">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-400">
+          <i class="bi bi-box-seam text-lg" aria-hidden="true"></i>
+        </span>
+        <p class="text-sm font-medium text-slate-400">Quantidade de produtos</p>
+      </div>
+      <p class="mt-3 text-2xl font-semibold text-white sm:text-3xl">{{ product_metrics.total_quantity }}</p>
     </div>
+
+    <div class="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-black/40 backdrop-blur-xl transition hover:border-violet-500/30">
+      <div class="flex items-center gap-3">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-500/15 text-violet-400">
+          <i class="bi bi-cash-stack text-lg" aria-hidden="true"></i>
+        </span>
+        <p class="text-sm font-medium text-slate-400">Custo do estoque</p>
+      </div>
+      <p class="mt-3 text-2xl font-semibold text-white sm:text-3xl">R$ {{ product_metrics.total_cost_price }}</p>
+    </div>
+
+    <div class="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-black/40 backdrop-blur-xl transition hover:border-emerald-500/30">
+      <div class="flex items-center gap-3">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-400">
+          <i class="bi bi-graph-up text-lg" aria-hidden="true"></i>
+        </span>
+        <p class="text-sm font-medium text-slate-400">Valor do estoque</p>
+      </div>
+      <p class="mt-3 text-2xl font-semibold text-white sm:text-3xl">R$ {{ product_metrics.total_selling_price }}</p>
+    </div>
+
+    <div class="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-black/40 backdrop-blur-xl transition hover:border-amber-500/30">
+      <div class="flex items-center gap-3">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/15 text-amber-400">
+          <i class="bi bi-piggy-bank text-lg" aria-hidden="true"></i>
+        </span>
+        <p class="text-sm font-medium text-slate-400">Lucro do estoque</p>
+      </div>
+      <p class="mt-3 text-2xl font-semibold text-white sm:text-3xl">R$ {{ product_metrics.total_profit }}</p>
+    </div>
+  </div>
 </div>

@@ -1,22 +1,55 @@
 {% extends 'base.html' %}
 
-{% block content %}
-    <div class="container">
-        <h3 class="display-6">Detelhes do produto</h3>
+{% block title %}
+    SGE - Detalhes do Produto
+{% endblock %}
 
-        <div class="card">
-            <div class="card-body">
-                <h3 class="card-title">{{ object.title }}</h3>
-                <p class="card-text">Categoria: {{ object.category }}</p>
-                <p class="card-text">Marca: {{ object.brand }}</p>
-                <p class="card-text">{{ object.description }}</p>
-                <p class="card-text">Número de série: <strong>{{ object.serie_number }}</strong></p>
-                <p class="card-text">Preço de custo: <strong>{{ object.cost_price }}</strong></p>
-                <p class="card-text">Preço de venda: <strong>{{ object.selling_price }}</strong></p>
-                <p class="card-text">Quantidade em estoque: <strong>{{ object.quantity }}</strong></p>
-            </div>
-        </div>
-        <a href="{% url 'product_list' %}" class="btn btn-secondary mt-3">Voltar</a>
+{% block content %}
+  <div class="mx-auto max-w-2xl space-y-6">
+    <div>
+      <h1 class="text-xl font-semibold tracking-tight text-white sm:text-2xl">Detalhes do Produto</h1>
+      <p class="mt-1 text-sm text-slate-400">Informações completas do produto selecionado.</p>
     </div>
 
+    <div class="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-black/40 backdrop-blur-xl sm:p-6">
+      <h2 class="text-lg font-semibold text-white">{{ object.title }}</h2>
+      {% if object.description %}
+        <p class="mt-1 text-sm text-slate-400">{{ object.description }}</p>
+      {% endif %}
+
+      <dl class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div>
+          <dt class="text-xs font-medium tracking-wide text-slate-400 uppercase">Categoria</dt>
+          <dd class="mt-1 text-sm text-slate-100">{{ object.category }}</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-medium tracking-wide text-slate-400 uppercase">Marca</dt>
+          <dd class="mt-1 text-sm text-slate-100">{{ object.brand }}</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-medium tracking-wide text-slate-400 uppercase">Número de série</dt>
+          <dd class="mt-1 text-sm text-slate-100">{{ object.serie_number|default:"-" }}</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-medium tracking-wide text-slate-400 uppercase">Quantidade em estoque</dt>
+          <dd class="mt-1 text-sm text-slate-100">{{ object.quantity }}</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-medium tracking-wide text-slate-400 uppercase">Preço de custo</dt>
+          <dd class="mt-1 text-sm text-slate-100">R$ {{ object.cost_price }}</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-medium tracking-wide text-slate-400 uppercase">Preço de venda</dt>
+          <dd class="mt-1 text-sm text-slate-100">R$ {{ object.selling_price }}</dd>
+        </div>
+      </dl>
+    </div>
+
+    <a
+      href="{% url 'product_list' %}"
+      class="inline-flex items-center justify-center rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-slate-200 transition hover:bg-white/10"
+    >
+      Voltar
+    </a>
+  </div>
 {% endblock %}
