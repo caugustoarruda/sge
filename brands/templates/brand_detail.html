@@ -1,16 +1,31 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    SGE - Detalhes da Marca
+{% endblock %}
 {% block content %}
-    <div class="container">
-        <h3 class="display-6">Detelhes da marca</h3>
-
-        <div class="card">
-            <div class="card-body">
-                <h3 class="card-title">{{ object.name }}</h3>
-                <p class="card-text">{{ object.description }}</p>
-            </div>
-        </div>
-        <a href="{% url 'brand_list' %}" class="btn btn-secondary mt-3">Voltar</a>
+  <div class="mx-auto max-w-2xl">
+    <div class="mb-6">
+      <h1 class="text-xl font-semibold tracking-tight text-white sm:text-2xl">Detalhes da Marca</h1>
     </div>
 
+    <div class="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-black/40 backdrop-blur-xl sm:p-6">
+      <h2 class="text-lg font-semibold text-white">{{ object.name }}</h2>
+      <dl class="mt-4 space-y-4">
+        <div>
+          <dt class="text-sm font-medium text-slate-400">Descrição</dt>
+          <dd class="mt-1 text-sm text-slate-200">{{ object.description|default:"Nenhuma descrição cadastrada." }}</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="mt-4">
+      <a
+        href="{% url 'brand_list' %}"
+        class="rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-slate-200 transition hover:bg-white/10"
+      >
+        Voltar
+      </a>
+    </div>
+  </div>
 {% endblock %}

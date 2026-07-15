@@ -1,5 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand text-white" href="#">Sistema de Gestão de Estoque (SGE)</a>
+<header class="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between border-b border-white/10 bg-white/5 px-4 backdrop-blur-xl sm:px-6">
+  <div class="flex items-center gap-3">
+    {% if user.is_authenticated %}
+      <button
+        type="button"
+        @click="sidebarOpen = !sidebarOpen"
+        class="rounded-lg p-2 text-slate-300 transition hover:bg-white/10 hover:text-white lg:hidden"
+        aria-label="Abrir menu de navegação"
+        aria-controls="app-sidebar"
+        :aria-expanded="sidebarOpen"
+      >
+        <i class="bi bi-list text-xl" aria-hidden="true"></i>
+      </button>
+    {% endif %}
+
+    <a
+      href="{% if user.is_authenticated %}{% url 'home' %}{% else %}#{% endif %}"
+      class="flex items-center gap-2.5 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+    >
+      <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-indigo-500 to-violet-600 shadow-lg shadow-indigo-950/50">
+        <i class="bi bi-box-seam text-sm text-white" aria-hidden="true"></i>
+      </span>
+      <span class="hidden text-sm font-semibold tracking-tight text-white sm:block sm:text-base">
+        Sistema de Gestão de Estoque (SGE)
+      </span>
+    </a>
   </div>
-</nav>
+
+  {% if user.is_authenticated %}
+    <div class="flex items-center gap-2 text-sm text-slate-300">
+      <i class="bi bi-person-circle text-lg text-slate-400" aria-hidden="true"></i>
+      <span class="hidden sm:inline">{{ user.get_username }}</span>
+    </div>
+  {% endif %}
+</header>

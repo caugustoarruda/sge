@@ -1,79 +1,126 @@
-<div class="row flex-nowrap">
-  <div class="col-auto col-md-0 col-xl-0 px-0 bg-dark">
-    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white">
-      <button class="btn btn-dark d-block d-sm-none mb-3" type="button" data-bs-toggle="collapse"
-        data-bs-target="#menuCollapse" aria-expanded="false" aria-controls="menuCollapse">
-        <i class="bi bi-list fs-4"></i>
-      </button>
-      <div class="collapse d-sm-block" id="menuCollapse">
-        <ul class="nav flex-column align-items-start" id="menu">
-          <li>
-            <a href="{% url 'home' %}" class="nav-link px-0 align-middle">
-              <i class="bi bi-speedometer2 fs-4"></i>
-              <span class="ms-1">Dashboard</span>
-            </a>
-          </li>
-          {% if perms.suppliers.view_supplier %}
-            <li>
-              <a href="{% url 'supplier_list' %}" class="nav-link px-0 align-middle">
-                <i class="bi bi-truck fs-4"></i>
-                <span class="ms-1">Fornecedores</span>
-              </a>
-            </li>
-          {% endif %}
-          {% if perms.brands.view_brand %}
-            <li>
-              <a href="{% url 'brand_list' %}" class="nav-link px-0 align-middle">
-                <i class="bi bi-shop fs-4"></i>
-                <span class="ms-1">Marcas</span>
-              </a>
-            </li>
-          {% endif %}
-          {% if perms.categories.view_catogory %}
-            <li>
-              <a href="{% url 'category_list' %}" class="nav-link px-0 align-middle">
-                <i class="bi bi-tags fs-4"></i>
-                <span class="ms-1">Categorias</span>
-              </a>
-            </li>
-          {% endif %}
-          {% if perms.products.view_product %}
-            <li>
-              <a href="{% url 'product_list' %}" class="nav-link px-0 align-middle">
-                <i class="bi bi-box-seam fs-4"></i>
-                <span class="ms-1">Produtos</span>
-              </a>
-            </li>
-          {% endif %}
-          {% if perms.inflows.view_inflow %}
-            <li>
-              <a href="{% url 'inflow_list' %}" class="nav-link px-0 align-middle">
-                <i class="bi bi-arrow-down-left-square fs-4"></i>
-                <span class="ms-1">Entradas</span>
-              </a>
-            </li>
-          {% endif %}
-          {% if perms.outflows.view_outflow %}
-            <li>
-              <a href="{% url 'outflow_list' %}" class="nav-link px-0 align-middle">
-                <i class="bi bi-arrow-up-right-square fs-4"></i>
-                <span class="ms-1">Saídas</span>
-              </a>
-            </li> 
-          {% endif %}
-          <li class="nav-item">
-            {% if user.is_authenticated %}
-              <form action="{% url 'logout' %}" method="post" id="logout-form" class="nav-link px-0 align-middle">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-link text-decoration-none text-reset nav-link px-0 align-middle">
-                  <i class="i bi-box-arrow-right fs-4 align-middle"></i>
-                  <span class="ms-1 align-middle">Sair</span>
-                </button>
-              </form>
-            {% endif %}
-          </li>
-        </ul>
-      </div>
-      <hr>
-    </div>
+{% url 'home' as home_url %}
+
+<div
+  x-show="sidebarOpen"
+  x-cloak
+  x-transition:enter="transition-opacity ease-out duration-200"
+  x-transition:enter-start="opacity-0"
+  x-transition:enter-end="opacity-100"
+  x-transition:leave="transition-opacity ease-in duration-150"
+  x-transition:leave-start="opacity-100"
+  x-transition:leave-end="opacity-0"
+  @click="sidebarOpen = false"
+  class="fixed inset-0 z-40 bg-slate-950/70 backdrop-blur-sm lg:hidden"
+  aria-hidden="true"
+></div>
+
+<aside
+  id="app-sidebar"
+  x-cloak
+  :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
+  class="fixed inset-y-0 left-0 top-16 z-50 w-64 transform overflow-y-auto border-r border-white/10 bg-slate-950/90 backdrop-blur-xl transition-transform duration-300 ease-in-out lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:translate-x-0 lg:bg-white/5"
+  aria-label="Menu principal"
+>
+  <div class="flex items-center justify-between px-4 py-3 lg:hidden">
+    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Menu</span>
+    <button
+      type="button"
+      @click="sidebarOpen = false"
+      class="rounded-lg p-1.5 text-slate-400 transition hover:bg-white/10 hover:text-white"
+      aria-label="Fechar menu"
+    >
+      <i class="bi bi-x-lg" aria-hidden="true"></i>
+    </button>
   </div>
+
+  <nav class="flex flex-col gap-1 px-3 py-4">
+    <a
+      href="{{ home_url }}"
+      class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition {% if request.path == home_url %}border border-indigo-500/30 bg-linear-to-r from-indigo-600/20 to-violet-600/20 text-white{% else %}text-slate-300 hover:bg-white/10 hover:text-white{% endif %}"
+    >
+      <i class="bi bi-speedometer2 text-lg" aria-hidden="true"></i>
+      <span>Dashboard</span>
+    </a>
+
+    {% if perms.suppliers.view_supplier %}
+      {% url 'supplier_list' as supplier_list_url %}
+      <a
+        href="{{ supplier_list_url }}"
+        class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition {% if request.path == supplier_list_url %}border border-indigo-500/30 bg-linear-to-r from-indigo-600/20 to-violet-600/20 text-white{% else %}text-slate-300 hover:bg-white/10 hover:text-white{% endif %}"
+      >
+        <i class="bi bi-truck text-lg" aria-hidden="true"></i>
+        <span>Fornecedores</span>
+      </a>
+    {% endif %}
+
+    {% if perms.brands.view_brand %}
+      {% url 'brand_list' as brand_list_url %}
+      <a
+        href="{{ brand_list_url }}"
+        class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition {% if request.path == brand_list_url %}border border-indigo-500/30 bg-linear-to-r from-indigo-600/20 to-violet-600/20 text-white{% else %}text-slate-300 hover:bg-white/10 hover:text-white{% endif %}"
+      >
+        <i class="bi bi-shop text-lg" aria-hidden="true"></i>
+        <span>Marcas</span>
+      </a>
+    {% endif %}
+
+    {% if perms.categories.view_catogory %}
+      {% url 'category_list' as category_list_url %}
+      <a
+        href="{{ category_list_url }}"
+        class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition {% if request.path == category_list_url %}border border-indigo-500/30 bg-linear-to-r from-indigo-600/20 to-violet-600/20 text-white{% else %}text-slate-300 hover:bg-white/10 hover:text-white{% endif %}"
+      >
+        <i class="bi bi-tags text-lg" aria-hidden="true"></i>
+        <span>Categorias</span>
+      </a>
+    {% endif %}
+
+    {% if perms.products.view_product %}
+      {% url 'product_list' as product_list_url %}
+      <a
+        href="{{ product_list_url }}"
+        class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition {% if request.path == product_list_url %}border border-indigo-500/30 bg-linear-to-r from-indigo-600/20 to-violet-600/20 text-white{% else %}text-slate-300 hover:bg-white/10 hover:text-white{% endif %}"
+      >
+        <i class="bi bi-box-seam text-lg" aria-hidden="true"></i>
+        <span>Produtos</span>
+      </a>
+    {% endif %}
+
+    {% if perms.inflows.view_inflow %}
+      {% url 'inflow_list' as inflow_list_url %}
+      <a
+        href="{{ inflow_list_url }}"
+        class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition {% if request.path == inflow_list_url %}border border-indigo-500/30 bg-linear-to-r from-indigo-600/20 to-violet-600/20 text-white{% else %}text-slate-300 hover:bg-white/10 hover:text-white{% endif %}"
+      >
+        <i class="bi bi-arrow-down-left-square text-lg" aria-hidden="true"></i>
+        <span>Entradas</span>
+      </a>
+    {% endif %}
+
+    {% if perms.outflows.view_outflow %}
+      {% url 'outflow_list' as outflow_list_url %}
+      <a
+        href="{{ outflow_list_url }}"
+        class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition {% if request.path == outflow_list_url %}border border-indigo-500/30 bg-linear-to-r from-indigo-600/20 to-violet-600/20 text-white{% else %}text-slate-300 hover:bg-white/10 hover:text-white{% endif %}"
+      >
+        <i class="bi bi-arrow-up-right-square text-lg" aria-hidden="true"></i>
+        <span>Saídas</span>
+      </a>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+      <div class="mt-2 border-t border-white/10 pt-2">
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button
+            type="submit"
+            class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-300 transition hover:bg-red-500/10 hover:text-red-300"
+          >
+            <i class="bi bi-box-arrow-right text-lg" aria-hidden="true"></i>
+            <span>Sair</span>
+          </button>
+        </form>
+      </div>
+    {% endif %}
+  </nav>
+</aside>

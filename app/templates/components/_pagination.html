@@ -1,14 +1,20 @@
 {% if page_obj.has_other_pages %}
-  <nav>
-    <ul class="pagination justify-content-center">
+  <nav aria-label="Paginação" class="mt-8 flex justify-center">
+    <ul class="flex flex-wrap items-center justify-center gap-1.5">
       {% if page_obj.has_previous %}
-        <li class="page-item">
-          <a class="page-link" href="?page=1">
+        <li>
+          <a
+            href="?page=1"
+            class="flex h-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 px-3 text-sm font-medium text-slate-300 transition hover:border-indigo-500/40 hover:bg-white/10 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+          >
             Primeira
           </a>
         </li>
-        <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+        <li>
+          <a
+            href="?page={{ page_obj.previous_page_number }}"
+            class="flex h-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 px-3 text-sm font-medium text-slate-300 transition hover:border-indigo-500/40 hover:bg-white/10 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+          >
             Anterior
           </a>
         </li>
@@ -17,14 +23,21 @@
       {% for page_number in page_obj.paginator.page_range %}
         {% if page_number <= page_obj.number|add:3 and page_number >= page_obj.number|add:-3 %}
           {% if page_obj.number == page_number %}
-            <li class="page-item active">
-              <a class="page-link" href="?page={{ page_number }}">
+            <li>
+              <a
+                href="?page={{ page_number }}"
+                aria-current="page"
+                class="flex h-9 min-w-9 items-center justify-center rounded-lg border border-indigo-500/50 bg-linear-to-r from-indigo-600 to-violet-600 px-3 text-sm font-semibold text-white shadow-lg shadow-indigo-950/40"
+              >
                 {{ page_number }}
               </a>
             </li>
           {% else %}
-            <li class="page-item">
-              <a class="page-link" href="?page={{ page_number }}">
+            <li>
+              <a
+                href="?page={{ page_number }}"
+                class="flex h-9 min-w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 px-3 text-sm font-medium text-slate-300 transition hover:border-indigo-500/40 hover:bg-white/10 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+              >
                 {{ page_number }}
               </a>
             </li>
@@ -33,13 +46,19 @@
       {% endfor %}
 
       {% if page_obj.has_next %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+        <li>
+          <a
+            href="?page={{ page_obj.next_page_number }}"
+            class="flex h-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 px-3 text-sm font-medium text-slate-300 transition hover:border-indigo-500/40 hover:bg-white/10 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+          >
             Próxima
           </a>
         </li>
-        <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
+        <li>
+          <a
+            href="?page={{ page_obj.paginator.num_pages }}"
+            class="flex h-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 px-3 text-sm font-medium text-slate-300 transition hover:border-indigo-500/40 hover:bg-white/10 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+          >
             Última
           </a>
         </li>
