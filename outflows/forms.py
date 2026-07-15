@@ -9,9 +9,9 @@ class OutflowForm(forms.ModelForm):
         model = models.Outflow
         fields = ['product', 'quantity', 'description']
         widgets = {
-            'product': forms.Select(attrs={'class': 'form-control'}),
-            'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control'})
+            'product': forms.Select(attrs={'class': 'w-full appearance-none rounded-lg border border-white/10 bg-slate-900/60 py-2.5 px-3 pr-8 text-sm text-slate-100 placeholder-slate-500 shadow-inner outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50'}),
+            'quantity': forms.NumberInput(attrs={'class': 'w-full rounded-lg border border-white/10 bg-slate-900/60 py-2.5 px-3 text-sm text-slate-100 placeholder-slate-500 shadow-inner outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50'}),
+            'description': forms.Textarea(attrs={'class': 'w-full rounded-lg border border-white/10 bg-slate-900/60 py-2.5 px-3 text-sm text-slate-100 placeholder-slate-500 shadow-inner outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/50'})
         }
         labels = {
             'product': 'Produto',
